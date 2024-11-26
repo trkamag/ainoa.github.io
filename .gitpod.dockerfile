@@ -10,13 +10,18 @@ RUN   sudo sudo apt-get update \
     # Install terraform autocomplete
 RUN   terraform -install-autocomplete
 
-RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
+RUN   wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh || true
 
-# Add alias to zshrc
-RUN echo  '\n# Added by Thierry K. on 2024114\n' >> /home/gitpod/.zshrc
+ARG   USERNAME=gitpod
 
-RUN echo  "alias ll='ls -alF'\nalias la='ls -A'\nalias l='ls -CF'\nalias tf='terraform'" >> /home/github/.zshrc
+# Modify ZSH theme
+RUN   sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="agnoster"/' /home/$USERNAME/.zshrc
 
-CMD ["zsh"]
+# Add alias to bashrc
+RUN   echo  '\n# Added by Thierry K. on 2024114\n' >> /home/$USERNAME/.zshrc
+
+RUN   echo  "alias ll='ls -alF'\nalias la='ls -A'\nalias l='ls -CF'\nalias tf='terraform'" >> /home/$USERNAME/.zshrc
+
+
 
     
