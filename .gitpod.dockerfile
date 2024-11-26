@@ -22,6 +22,8 @@ RUN   echo  '\n# Added by Thierry K. on 2024114\n' >> /home/$USERNAME/.zshrc
 
 RUN   echo  "alias ll='ls -alF'\nalias la='ls -A'\nalias l='ls -CF'\nalias tf='terraform'" >> /home/$USERNAME/.zshrc
 
+CMD ["zsh"]
+
 
 
     
